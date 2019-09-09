@@ -2,27 +2,34 @@
 
 // Class with functions
 
-class MetricFunctions {
+class MetricFunctions
+{
     private $inputString = "";
 
     // Takes a string as a parameter.
     public function __construct(string $string)
     {
-        $this->inputString = trim($string);      
+        $this->inputString = $string;
     }
 
     //Counts characters in a string.
-    function getCountedChars () {
+    function getCountedChars()
+    {
         $count = 0;
 
-        foreach (count_chars($this->inputString, 1) as $i) {
+        // Trim string from whitespaces
+        $trimmedInputString = trim($this->inputString);
+
+        foreach (count_chars($trimmedInputString, 1) as $i) {
             $count += $i;
         }
 
         return $count;
     }
 
-    function getCountedForLoops () {
+    // Counts for loop occurences
+    function getCountedForLoops()
+    {
         $count = 0;
 
         $count = substr_count($this->inputString, "for(");
@@ -31,11 +38,24 @@ class MetricFunctions {
         return $count;
     }
 
-    function getCountedForEachLoops () {
+    // Counts foreach occurences
+    function getCountedForEachLoops()
+    {
         $count = 0;
 
         $count = substr_count($this->inputString, "foreach(");
         $count += substr_count($this->inputString, "foreach (");
+
+        return $count;
+    }
+
+    // Counts if-statements 
+    function getCountedIfStatements()
+    {
+        $count = 0;
+
+        $count = substr_count($this->inputString, "if(");
+        $count += substr_count($this->inputString, "if (");
 
         return $count;
     }

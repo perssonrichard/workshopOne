@@ -22,6 +22,7 @@ class View {
         $numberOfChars = $this->funcs->getCountedChars();
         $numberOfForLoops = $this->funcs->getCountedForLoops();
         $numberOfForEachLoops = $this->funcs->getCountedForEachLoops();
+        $numberOfIfStatements = $this->funcs->getCountedIfStatements();
 
 
         return $this->metricsDataResults = "
@@ -29,6 +30,7 @@ class View {
             <li> Number of characters: $numberOfChars </li>
             <li> Number of For-Loops: $numberOfForLoops </li>
             <li> Number of ForEach-Loops: $numberOfForEachLoops </li>
+            <li> Number of If-statements: $numberOfIfStatements </li>
         </ul>
         ";
     }
