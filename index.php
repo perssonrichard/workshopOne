@@ -1,7 +1,7 @@
 <?php
 
 require_once("View.php");
-require_once("Functions.php");
+require_once("MetricFunctions.php");
 
 //Read a text file.
 $text = file_get_contents("text.txt");

@@ -1,32 +1,34 @@
 <?php
 
-require_once("Functions.php");
+require_once("MetricFunctions.php");
 
 // Render the main content
 class View {
-    
-    private $funcs = new MetricFunctions($this->textInput);
-
     private $textInput = "";
+    private $funcs;
 
     public function __construct(string $text) {
         $this->textInput = $text;
+        $this->funcs = new MetricFunctions($this->textInput);
     }
     
      function show() {
-        // Should return a view depending on if there is a file or not.
         if (strlen($this->textInput) > 0) {
-
-            return $this->funcs->runMetrics();
+            return $this->showMetrics();
         }        
     }
 
     function showMetrics () {
-        $this->numberOfChars = $this->countChars();
+        $numberOfChars = $this->funcs->getCountedChars();
+        $numberOfForLoops = $this->funcs->getCountedForLoops();
+        $numberOfForEachLoops = $this->funcs->getCountedForEachLoops();
+
 
         return $this->metricsDataResults = "
         <ul>
-            <li> Number of characters: $this->numberOfChars </li>
+            <li> Number of characters: $numberOfChars </li>
+            <li> Number of For-Loops: $numberOfForLoops </li>
+            <li> Number of ForEach-Loops: $numberOfForEachLoops </li>
         </ul>
         ";
     }
